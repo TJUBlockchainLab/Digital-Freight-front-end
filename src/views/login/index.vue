@@ -1,9 +1,11 @@
 <template>
   <div class="login-container">
     <div :class="'login'">
-      <div class="left-content">LOGO</div>
+      <div class="left-content">
+        <img src="../../assets/logo.jpg" />
+      </div>
       <div class="right-content">
-        <p class="title">XX网络货运平台</p>
+        <p class="title">TJU网络货运平台</p>
         <p class="label">手机号/邮箱：</p>
         <el-input
           class="input"
@@ -211,10 +213,13 @@ export default {
   width: 300px;
   height: 300px;
   margin-right: 80px;
-  border: 1px solid #657eda;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.left-content img {
+  width: 100%;
+  height: 100%;
 }
 .right-content {
   width: 350px;

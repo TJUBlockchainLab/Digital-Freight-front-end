@@ -177,8 +177,8 @@ router.beforeEach(async (to, from, next) => {
 		} else {
 			window.document.title =
 				to.meta.title == undefined
-					? "XX网络货运平台"
-					: `${to.meta.title} - XX网络货运平台`;
+					? "TJU网络货运平台"
+					: `${to.meta.title} - TJU网络货运平台`;
 			next();
 		}
 	}
