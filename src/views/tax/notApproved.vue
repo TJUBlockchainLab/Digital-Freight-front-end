@@ -73,7 +73,7 @@
     <el-dialog
       v-model="centerDialogVisible"
       title="订单详情"
-      width="30%"
+      width="40%"
       center
       :show-close="false"
     >
@@ -118,6 +118,14 @@
             type[parseInt(item.type)]
           }}）</span
         >
+      </div>
+      <div class="input-line">
+        <p>订单txid：</p>
+        <span>{{ detail.tx_hash }}</span>
+      </div>
+      <div class="input-line" v-for="(item, i) in detail.gasBills" :key="i">
+        <p>第{{ i + 1 }}张油票txid：</p>
+        <span>{{ detail.gasBills[i].tx_hash }}</span>
       </div>
       <template #footer>
         <span class="dialog-footer">

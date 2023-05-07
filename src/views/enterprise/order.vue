@@ -71,7 +71,7 @@
     <el-dialog
       v-model="centerDialogVisible"
       title="订单详情"
-      width="30%"
+      width="40%"
       center
       :show-close="false"
     >
@@ -108,6 +108,10 @@
       <div class="input-line">
         <p>审核状态：</p>
         <span>{{ detail.is_approved ? "已审核" : "未审核" }}</span>
+      </div>
+      <div class="input-line">
+        <p>订单txid：</p>
+        <span>{{ detail.tx_hash }}</span>
       </div>
       <template #footer>
         <span class="dialog-footer">

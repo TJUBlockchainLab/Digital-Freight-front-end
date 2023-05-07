@@ -20,12 +20,12 @@
       stripe
       border
     >
-      <el-table-column align="center" type="index" label="序号" width="50" />
+      <el-table-column align="center" type="index" label="序号" width="40" />
       <el-table-column align="center" label="油票编号" prop="uuid" />
       <el-table-column align="center" label="订单编号" prop="order_uuid" />
       <el-table-column align="center" label="钱数（分）" prop="cost" />
       <el-table-column align="center" label="日期" prop="timestamp" />
-      <el-table-column align="center" label="类型">
+      <el-table-column align="center" label="类型" >
         <template #default="scope">
           <div>{{ scope.row.type === "0" ? "油票" : "电票" }}</div>
         </template>
@@ -61,7 +61,7 @@
     <el-dialog
       v-model="centerDialogVisible"
       title="订单详情"
-      width="30%"
+      width="50%"
       center
       :show-close="false"
     >
@@ -84,6 +84,10 @@
       <div class="input-line">
         <p>类型：</p>
         <span>{{ detail.type === "0" ? "油票" : "电票" }}</span>
+      </div>
+      <div class="input-line">
+        <p>油票txid： </p>
+        <span>{{ detail.tx_hash }}</span>
       </div>
       <template #footer>
         <span class="dialog-footer">
