@@ -113,7 +113,7 @@
       </div>
       <div class="input-line">
         <p>订单txid：</p>
-        <span>{{ detail.tx_hash }}</span>
+<a target="_blank" v-bind:href="'http://121.36.90.112:8001/tx/' + detail.tx_hash">{{ detail.tx_hash }}</a>
       </div>
       <template #footer>
         <span class="dialog-footer">
@@ -142,9 +142,15 @@ export default {
       detail: {},
       tableData: [],
       stateMap: ["未开始", "进行中", "已完成"],
+      p: "123"
     };
   },
   methods: {
+    eClick(hash){
+      let url="http://121.36.90.112:8001/tx/"
+      let path=url+hash
+      window.location.href=path
+    },
     handleDate(date) {
       return handleDate(date);
     },

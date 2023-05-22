@@ -61,7 +61,7 @@
     <el-dialog
       v-model="centerDialogVisible"
       title="订单详情"
-      width="50%"
+      width="40%"
       center
       :show-close="false"
     >
@@ -87,9 +87,9 @@
       </div>
       <div class="input-line">
         <p>油票txid： </p>
-        <span>{{ detail.tx_hash }}</span>
+         <a target="_blank" v-bind:href="'http://121.36.90.112:8001/tx/' + detail.tx_hash">{{ detail.tx_hash }}</a>
       </div>
-      <template #footer>
+<template #footer>
         <span class="dialog-footer">
           <el-button
             class="confirmBtn"
@@ -124,6 +124,11 @@ export default {
     };
   },
   methods: {
+    eClick(hash){
+      let url="http://121.36.90.112:8001/tx/"
+      let path=url+hash
+      window.location.href=path
+    },
     handleDate(date) {
       return handleDate(date);
     },

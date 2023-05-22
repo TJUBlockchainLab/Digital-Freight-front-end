@@ -73,7 +73,7 @@
     <el-dialog
       v-model="centerDialogVisible"
       title="订单详情"
-      width="40%"
+      width="50%"
       center
       :show-close="false"
     >
@@ -121,11 +121,17 @@
       </div>
       <div class="input-line">
         <p>订单txid：</p>
-        <span>{{ detail.tx_hash }}</span>
-      </div>
-      <div class="input-line" v-for="(item, i) in detail.gasBills" :key="i">
+<a target="_blank" v-bind:href="'http://121.36.90.112:8001/tx/' + detail.tx_hash">{{ detail.tx_hash }}</a>
+      </div>      
+<div class="input-line" v-for="(item, i) in detail.gasBills" :key="i">
         <p>第{{ i + 1 }}张油票txid：</p>
-        <span>{{ detail.gasBills[i].tx_hash }}</span>
+<a target="_blank" v-bind:href="'http://121.36.90.112:8001/tx/' + detail.gasBills[i].tx_hash">{{ detail.gasBills[i].tx_hash }}</a>
+      </div>        
+      <div class="input-line">
+        <p>匹配情况：</p>
+        <span v-if="detail.bill_uploaded&&detail.gasBills[0].cost>detail.distance*150">{{ match[1] }}</span>
+        <span v-if="detail.bill_uploaded&&(detail.gasBills[0].timestamp<detail.create_time||detail.gasBills[0].timestamp>detail.deadline)">{{ match[2] }}</span>
+        <span v-if="detail.bill_uploaded&&detail.gasBills[0].cost<=detail.distance*150&&detail.gasBills[0].timestamp>detail.create_time&&detail.gasBills[0].timestamp<detail.deadline">{{ match[0] }}</span>
       </div>
       <template #footer>
         <span class="dialog-footer">
@@ -154,9 +160,15 @@ export default {
       tableData: [],
       type: ["油票", "电票"],
       stateMap: ["未开始", "进行中", "已完成"],
+      match: ["匹配成功","发票金额超出系统计算;","发票时间未在订单时间内;",""],
     };
   },
   methods: {
+    eClick(hash){
+      let url="http://121.36.90.112:8001/tx/"
+      let path=url+hash
+      window.location.href=path
+    },
     handleDate(date) {
       return handleDate(date);
     },

@@ -111,9 +111,9 @@
       </div>
       <div class="input-line">
         <p>订单txid：</p>
-        <span>{{ detail.tx_hash }}</span>
-      </div>
-      <template #footer>
+<a target="_blank" v-bind:href="'http://121.36.90.112:8001/tx/' + detail.tx_hash">{{ detail.tx_hash }}</a>
+      </div>      
+<template #footer>
         <span class="dialog-footer">
           <el-button
             class="confirmBtn"
@@ -143,6 +143,11 @@ export default {
     };
   },
   methods: {
+    eClick(hash){
+      let url="http://121.36.90.112:8001/tx/"
+      let path=url+hash
+      window.location.href=path
+    },
     handleConfirm(id) {
       this.detail = this.tableData[id];
       this.centerDialogVisible = true;
